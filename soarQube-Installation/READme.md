@@ -4,10 +4,10 @@
 
 
 
-## SonarQube Installation And Setup In AWS EC2 Redhat Instnace.
+## SonarQube Installation And Setup In AWS EC2 Redhat Instance.
 ##### Prerequisite
 + AWS Acccount.
-+ Create Redhat EC2 T2.medium Instnace with 4GB RAM.
++ Create Redhat EC2 T2.medium Instance with 4GB RAM.
 + Create Security Group and open Required ports.
    + 9000 ..etc
 + Attach Security Group to EC2 Instance.
@@ -21,15 +21,16 @@
 sudo useradd sonar
 # Grand sudo access to sonar user
 sudo echo "sonar ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/sonar
+sudo hostname sonar
 sudo su - sonar
 ```
 
 ### Install Java JDK 1.8+
 
 ``` sh
-hostname sonar
+#hostname sonar
 cd /opt
-sudo yum -y install unzip wget git
+sudo yum -y install unzip wget git tree
 sudo wget -c --header "Cookie: oraclelicense=accept-securebackup-cookie" http://download.oracle.com/otn-pub/java/jdk/8u131-b11/d54c1d3a095b4ff2b6607d096fa80163/jdk-8u131-linux-x64.rpm
 sudo yum install jdk-8u131-linux-x64.rpm -y
 ```
@@ -38,6 +39,7 @@ sudo yum install jdk-8u131-linux-x64.rpm -y
 sudo wget https://binaries.sonarsource.com/Distribution/sonarqube/sonarqube-7.8.zip
 sudo unzip sonarqube-7.8.zip
 sudo rm -rf sonarqube-7.8.zip
+sudo rm -rf jdk-8u131-linux-x64.rpm
 sudo mv sonarqube-7.8 sonarqube
 ```
 
