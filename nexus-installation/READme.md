@@ -28,7 +28,7 @@ sudo su - nexus
 
 ``` sh
 cd /opt
-sudo yum install wget git nano unzip -y
+sudo yum install wget git nano tree net-tools bind-utils unzip -y
 sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 ```
 ### Download nexus software and extract it (unzip).
@@ -36,6 +36,7 @@ sudo yum install java-11-openjdk-devel java-1.8.0-openjdk-devel -y
 sudo wget http://download.sonatype.com/nexus/3/nexus-3.15.2-01-unix.tar.gz 
 sudo tar -zxvf nexus-3.15.2-01-unix.tar.gz
 sudo mv /opt/nexus-3.15.2-01 /opt/nexus
+sudo rm -rf nexus-3.15.2-01-unix.tar.gz
 ```
 
 ## Grant permissions for nexus user to start and manage nexus service
@@ -58,8 +59,8 @@ vi /opt/nexus/bin/nexus.rc
 sudo ln -s /opt/nexus/bin/nexus /etc/init.d/nexus
 
 #9 Enable and start the nexus services
-sudo systemctl enable nexus
 sudo systemctl start nexus
+sudo systemctl enable nexus
 sudo systemctl status nexus
 echo "end of nexus installation"
 ```
